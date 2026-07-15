@@ -1,0 +1,285 @@
+/* ═══════════════════════════════════════════
+   PRICING — Cards + Toggle
+   ═══════════════════════════════════════════ */
+
+.pricing {
+  position: relative;
+  overflow: hidden;
+}
+
+/* ── Toggle ── */
+.pricing-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: var(--gap-xl);
+}
+
+.toggle-label {
+  font-size: var(--fs-base);
+  font-weight: 600;
+  color: var(--text-secondary);
+  transition: color var(--transition-base);
+  cursor: pointer;
+}
+
+.toggle-label.active {
+  color: var(--text-primary);
+}
+
+.toggle-switch {
+  width: 56px;
+  height: 30px;
+  background: var(--border-color);
+  border-radius: var(--radius-xl);
+  cursor: pointer;
+  position: relative;
+  transition: background var(--transition-base);
+}
+
+.toggle-switch input {
+  display: none;
+}
+
+.toggle-switch input:checked ~ .toggle-slider {
+  background: var(--gradient-primary);
+}
+
+.toggle-slider {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 24px;
+  height: 24px;
+  background: #fff;
+  border-radius: var(--radius-full);
+  transition: transform var(--transition-base);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.toggle-switch input:checked ~ .toggle-slider {
+  transform: translateX(26px);
+}
+
+.save-badge {
+  font-size: var(--fs-xs);
+  color: var(--secondary);
+  font-weight: 600;
+  background: rgba(0, 212, 170, 0.1);
+  padding: 3px 10px;
+  border-radius: var(--radius-xl);
+  border: 1px solid rgba(0, 212, 170, 0.2);
+}
+
+/* ── Cards Grid ── */
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--gap-lg);
+  align-items: center;
+}
+
+/* ── Pricing Card ── */
+.pricing-card {
+  padding: 40px 32px;
+  background: var(--bg-glass);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  transition: all var(--transition-base);
+  position: relative;
+  text-align: center;
+}
+
+.pricing-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-md);
+}
+
+/* ── Popular Plan ── */
+.pricing-card.popular {
+  border: 2px solid transparent;
+  background-image: linear-gradient(var(--bg-glass), var(--bg-glass)),
+    var(--gradient-primary);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  padding: 50px 32px;
+  transform: scale(1.05);
+  z-index: 2;
+}
+
+.pricing-card.popular:hover {
+  transform: scale(1.05) translateY(-8px);
+  box-shadow: var(--shadow-glow);
+}
+
+.popular-badge {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 6px 24px;
+  background: var(--gradient-primary);
+  border-radius: var(--radius-xl);
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  color: #fff;
+  white-space: nowrap;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 15px rgba(108, 99, 255, 0.4);
+}
+
+/* ── Pricing Header ── */
+.pricing-header {
+  margin-bottom: var(--gap-lg);
+}
+
+.plan-name {
+  font-family: var(--font-heading);
+  font-size: var(--fs-xl);
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: var(--gap-sm);
+}
+
+.plan-desc {
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+  margin-bottom: var(--gap-md);
+}
+
+/* ── Price ── */
+.plan-price {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 2px;
+  margin-bottom: var(--gap-md);
+}
+
+.plan-price .currency {
+  font-size: var(--fs-xl);
+  font-weight: 700;
+  color: var(--primary);
+  vertical-align: top;
+}
+
+.plan-price .amount {
+  font-family: var(--font-heading);
+  font-size: var(--fs-4xl);
+  font-weight: 900;
+  color: var(--text-primary);
+  line-height: 1;
+}
+
+.plan-price .amount.custom-price {
+  font-size: var(--fs-2xl);
+}
+
+.plan-price .period {
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+}
+
+/* ── Features ── */
+.plan-features {
+  margin-bottom: var(--gap-lg);
+  text-align: left;
+  list-style: none;
+}
+
+.plan-features li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 0;
+  font-size: var(--fs-sm);
+  color: var(--text-secondary);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.plan-features li:last-child {
+  border-bottom: none;
+}
+
+.plan-features li i {
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-full);
+  font-size: 10px;
+  flex-shrink: 0;
+}
+
+.plan-features li.included i {
+  background: rgba(0, 212, 170, 0.15);
+  color: var(--secondary);
+}
+
+.plan-features li.excluded {
+  opacity: 0.4;
+}
+
+.plan-features li.excluded i {
+  background: rgba(255, 107, 107, 0.15);
+  color: var(--accent);
+}
+
+/* ── CTA Button ── */
+.btn-block {
+  display: block;
+  width: 100%;
+  padding: 14px 28px;
+  font-size: var(--fs-base);
+  font-weight: 600;
+  text-align: center;
+  border-radius: var(--radius-md);
+  transition: all var(--transition-base);
+}
+
+.btn-block:hover {
+  transform: translateY(-3px);
+}
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════ */
+
+@media (max-width: 1200px) {
+  .pricing-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 992px) {
+  .pricing-grid {
+    grid-template-columns: 1fr;
+    max-width: 500px;
+    margin: 0 auto;
+    gap: var(--gap-md);
+  }
+
+  .pricing-card.popular {
+    transform: none;
+    padding: 40px 32px;
+  }
+
+  .pricing-card.popular:hover {
+    transform: translateY(-8px);
+  }
+}
+
+@media (max-width: 576px) {
+  .pricing-card {
+    padding: 30px 22px;
+  }
+
+  .plan-price .amount {
+    font-size: var(--fs-3xl);
+  }
+}

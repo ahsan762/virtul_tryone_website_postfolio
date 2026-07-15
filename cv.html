@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Muhammad Ahsan - CV | Software Engineer & AI Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    :root {
+      --primary: #6c63ff;
+      --primary-dark: #5a52d5;
+      --primary-light: #8b83ff;
+      --secondary: #00d4aa;
+      --accent: #ff6b6b;
+      --gradient: linear-gradient(135deg, #6c63ff, #00d4aa);
+      --bg: #f0f0fa;
+      --bg-card: #ffffff;
+      --text: #1a1a3e;
+      --text-secondary: #4a4a6a;
+      --text-muted: #8888aa;
+      --border: rgba(108, 99, 255, 0.12);
+      --shadow: 0 4px 20px rgba(108, 99, 255, 0.1);
+      --shadow-lg: 0 10px 50px rgba(108, 99, 255, 0.15);
+      --radius: 16px;
+      --font: 'Poppins', sans-serif;
+      --font-heading: 'Outfit', sans-serif;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .action-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 0;
+      box-shadow: 0 2px 20px rgba(108,99,255,0.06);
+    }
+
+    .action-bar .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .action-bar .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-heading);
+      font-weight: 800;
+      font-size: 1.2rem;
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .action-bar .brand i {
+      color: var(--primary);
+      font-size: 1.4rem;
+    }
+
+    .action-bar .brand span {
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .action-buttons {
+      display: flex;
+      gap: 8px;
+    }
+
+    .action-buttons .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 22px;
+      border-radius: 10px;
+      font-family: var(--font);
+      font-size: 0.85rem;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+
+    .btn-print {
+      background: var(--gradient);
+      color: #fff;
+      box-shadow: 0 4px 15px rgba(108, 99, 255, 0.3);
+    }
+
+    .btn-print:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 25px rgba(108, 99, 255, 0.4);
+    }
+
+    .btn-save {
+      background: #fff;
+      color: var(--text);
+      border: 1.5px solid var(--border);
+    }
+
+    .btn-save:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+      transform: translateY(-2px);
+    }
+
+    .btn-back {
+      background: transparent;
+      color: var(--text-secondary);
+      border: 1.5px solid var(--border);
+    }
+
+    .btn-back:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    .cv-wrapper {
+      max-width: 900px;
+      margin: 80px auto 40px;
+      padding: 0 20px;
+    }
+
+    .cv {
+      background: var(--bg-card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-lg);
+      overflow: hidden;
+    }
+
+    .cv-header {
+      background: var(--gradient);
+      color: #fff;
+      padding: 50px 50px 45px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cv-header-inner {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .cv-header-text {
+      flex: 1;
+    }
+
+    .cv-photo {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      border: 4px solid rgba(255,255,255,0.4);
+      object-fit: cover;
+      flex-shrink: 0;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.25);
+      transition: transform 0.3s ease;
+    }
+
+    .cv-photo:hover {
+      transform: scale(1.03);
+    }
+
+    .cv-header::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -10%;
+      width: 400px;
+      height: 400px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 50%;
+    }
+
+    .cv-header::after {
+      content: '';
+      position: absolute;
+      bottom: -30%;
+      left: -5%;
+      width: 250px;
+      height: 250px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 50%;
+    }
+
+    .cv-header-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .cv-name {
+      font-family: var(--font-heading);
+      font-size: 2.8rem;
+      font-weight: 900;
+      letter-spacing: -0.5px;
+      margin-bottom: 6px;
+    }
+
+    .cv-role {
+      font-size: 1rem;
+      font-weight: 400;
+      opacity: 0.92;
+      margin-bottom: 22px;
+      letter-spacing: 0.3px;
+      line-height: 1.6;
+    }
+
+    .cv-contact-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px 24px;
+    }
+
+    .cv-contact-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      opacity: 0.95;
+    }
+
+    .cv-contact-item i {
+      width: 16px;
+      text-align: center;
+      opacity: 0.85;
+      font-size: 0.9rem;
+    }
+
+    .cv-contact-item a {
+      color: #fff;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(255,255,255,0.2);
+      transition: border-color 0.2s;
+    }
+
+    .cv-contact-item a:hover {
+      border-bottom-color: #fff;
+    }
+
+    .cv-body {
+      padding: 40px 50px 50px;
+    }
+
+    .cv-section {
+      margin-bottom: 36px;
+    }
+
+    .cv-section:last-child {
+      margin-bottom: 0;
+    }
+
+    .cv-section-title {
+      font-family: var(--font-heading);
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+      border-bottom: 2.5px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .cv-section-title i {
+      font-size: 1rem;
+    }
+
+    .cv-summary {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      line-height: 1.8;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .skill-group h4 {
+      font-family: var(--font-heading);
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .skill-group h4 .skill-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--gradient);
+      flex-shrink: 0;
+    }
+
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .skill-tag {
+      padding: 5px 14px;
+      background: rgba(108, 99, 255, 0.07);
+      border: 1px solid rgba(108, 99, 255, 0.12);
+      border-radius: 20px;
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      transition: all 0.2s;
+    }
+
+    .skill-tag:hover {
+      background: rgba(108, 99, 255, 0.15);
+      color: var(--primary);
+      border-color: rgba(108, 99, 255, 0.3);
+    }
+
+    .services-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px 24px;
+    }
+
+    .service-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 14px;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      transition: background 0.2s;
+    }
+
+    .service-item:hover {
+      background: rgba(108, 99, 255, 0.05);
+    }
+
+    .service-item i {
+      color: var(--secondary);
+      font-size: 0.8rem;
+      flex-shrink: 0;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .project-item {
+      padding: 20px;
+      background: rgba(108, 99, 255, 0.03);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      transition: all 0.3s;
+    }
+
+    .project-item:hover {
+      border-color: rgba(108, 99, 255, 0.25);
+      box-shadow: 0 4px 15px rgba(108, 99, 255, 0.08);
+      transform: translateY(-2px);
+    }
+
+    .project-item h4 {
+      font-family: var(--font-heading);
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .project-item p {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 10px;
+    }
+
+    .project-links {
+      display: flex;
+      gap: 10px;
+    }
+
+    .project-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--primary);
+      text-decoration: none;
+      padding: 4px 12px;
+      background: rgba(108, 99, 255, 0.08);
+      border-radius: 6px;
+      transition: all 0.2s;
+    }
+
+    .project-link:hover {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    .education-item {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+    }
+
+    .edu-icon {
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--gradient);
+      color: #fff;
+      border-radius: 12px;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+
+    .edu-info h4 {
+      font-family: var(--font-heading);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 2px;
+    }
+
+    .edu-info p {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+
+    .edu-info .edu-year {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .tools-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tool-tag {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 16px;
+      background: rgba(0, 212, 170, 0.07);
+      border: 1px solid rgba(0, 212, 170, 0.15);
+      border-radius: 20px;
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+    }
+
+    .tool-tag i {
+      color: var(--secondary);
+      font-size: 0.75rem;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .lang-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 8px 0;
+    }
+
+    .lang-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--gradient);
+    }
+
+    .lang-item span {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+    }
+
+    .cv-footer {
+      text-align: center;
+      padding: 20px 50px 30px;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border);
+    }
+
+    .cv-footer a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    .cv-footer a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+      .action-bar .brand { font-size: 1rem; }
+      .action-buttons .btn { padding: 8px 14px; font-size: 0.78rem; }
+      .btn-back span, .btn-save span { display: none; }
+
+      .cv-wrapper { margin-top: 70px; padding: 0 12px; }
+      .cv-header { padding: 30px 24px 28px; }
+      .cv-header-inner { flex-direction: column-reverse; text-align: center; gap: 20px; }
+      .cv-photo { width: 130px; height: 130px; }
+      .cv-name { font-size: 2rem; }
+      .cv-role { font-size: 0.85rem; }
+      .cv-contact-row { justify-content: center; gap: 10px 18px; }
+      .cv-contact-item { font-size: 0.78rem; }
+
+      .cv-body { padding: 28px 24px 32px; }
+      .cv-section-title { font-size: 1rem; }
+
+      .skills-grid { grid-template-columns: 1fr; gap: 18px; }
+      .services-list { grid-template-columns: 1fr; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .two-col { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 480px) {
+      .cv-name { font-size: 1.6rem; }
+      .cv-header { padding: 24px 18px 22px; }
+      .cv-photo { width: 110px; height: 110px; }
+      .cv-body { padding: 22px 18px 26px; }
+      .cv-contact-row { flex-direction: column; gap: 6px; align-items: center; }
+      .action-buttons { gap: 5px; }
+      .action-buttons .btn { padding: 7px 10px; font-size: 0.72rem; }
+    }
+
+    @media print {
+      @page {
+        margin: 0.5in;
+        size: A4;
+      }
+
+      body {
+        background: #fff;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .action-bar { display: none !important; }
+
+      .cv-wrapper {
+        margin: 0;
+        padding: 0;
+        max-width: 100%;
+      }
+
+      .cv {
+        box-shadow: none;
+        border-radius: 0;
+      }
+
+      .cv-header {
+        padding: 30px 35px 25px;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .cv-photo {
+        width: 120px;
+        height: 120px;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+        border: 3px solid rgba(255,255,255,0.3);
+      }
+
+      .cv-name { font-size: 2.2rem; }
+      .cv-body { padding: 20px 35px 15px; }
+      .cv-section { margin-bottom: 16px; page-break-inside: avoid; }
+      .cv-footer { padding: 12px 35px; }
+
+      .skill-tag, .tool-tag, .service-item, .project-item {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .project-item { break-inside: avoid; }
+      .project-link { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="action-bar">
+    <div class="container">
+      <a href="index.html" class="brand">
+        <i class="fas fa-file-alt"></i> <span>CV</span>
+      </a>
+      <div class="action-buttons">
+        <a href="index.html" class="btn btn-back"><i class="fas fa-arrow-left"></i> <span>Portfolio</span></a>
+        <button class="btn btn-print" onclick="window.print()"><i class="fas fa-download"></i> <span>Print / PDF</span></button>
+      </div>
+    </div>
+  </div>
+
+  <div class="cv-wrapper">
+    <div class="cv">
+
+      <div class="cv-header">
+        <div class="cv-header-inner">
+          <div class="cv-header-text">
+            <h1 class="cv-name">Muhammad Ahsan</h1>
+            <p class="cv-role">Software Engineer | AI Web Developer | Full-Stack Developer | Graphic Designer | Digital Marketing Specialist</p>
+            <div class="cv-contact-row">
+              <div class="cv-contact-item">
+                <i class="fas fa-envelope"></i>
+                <a href="mailto:mahsan395794752@gmail.com">mahsan395794752@gmail.com</a>
+              </div>
+              <div class="cv-contact-item">
+                <i class="fab fa-whatsapp"></i>
+                <a href="https://wa.me/923213548485" target="_blank">+92 321 3548485</a>
+              </div>
+              <div class="cv-contact-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>Pakistan</span>
+              </div>
+              <div class="cv-contact-item">
+                <i class="fas fa-globe"></i>
+                <a href="index.html" target="_blank">muhammadahsan.dev</a>
+              </div>
+              <div class="cv-contact-item">
+                <i class="fab fa-fiverr"></i>
+                <a href="https://www.fiverr.com/mahsaan381" target="_blank">Fiverr</a>
+              </div>
+            </div>
+          </div>
+          <img src="images/cv-photo.png" alt="Muhammad Ahsan" class="cv-photo">
+        </div>
+      </div>
+
+      <div class="cv-body">
+
+        <div class="cv-section">
+          <h2 class="cv-section-title"><i class="fas fa-user"></i> Professional Summary</h2>
+          <p class="cv-summary">
+            Results-driven Software Engineer specializing in AI-powered web applications, modern website development, responsive UI/UX design, graphic design, and digital marketing. Experienced in developing AI Virtual Try-On websites, custom eCommerce platforms, business websites, admin dashboards, and responsive web applications. Passionate about building innovative digital solutions that enhance user experience, improve business growth, and increase customer engagement.
+          </p>
+        </div>
+
+        <div class="cv-section">
+          <h2 class="cv-section-title"><i class="fas fa-code"></i> Technical Skills</h2>
+          <div class="skills-grid">
+            <div class="skill-group">
+              <h4><span class="skill-dot"></span> Frontend Development</h4>
+              <div class="skill-tags">
+                <span class="skill-tag">HTML5</span>
+                <span class="skill-tag">CSS3</span>
+                <span class="skill-tag">JavaScript (ES6+)</span>
+                <span class="skill-tag">React</span>
+                <span class="skill-tag">Tailwind CSS</span>
+                <span class="skill-tag">Bootstrap</span>
+              </div>
+            </div>
+            <div class="skill-group">
+              <h4><span class="skill-dot"></span> Backend Development</h4>
+              <div class="skill-tags">
+                <span class="skill-tag">Node.js</span>
+                <span class="skill-tag">Express.js</span>
+                <span class="skill-tag">PHP</span>
+                <span class="skill-tag">Python</span>
+                <span class="skill-tag">MySQL</span>
+                <span class="skill-tag">REST APIs</span>
+              </div>
+            </div>
+            <div class="skill-group">
+              <h4><span class="skill-dot"></span> AI & Automation</h4>
+              <div class="skill-tags">
+                <span class="skill-tag">AI Virtual Try-On</span>
+                <span class="skill-tag">OpenAI Integration</span>
+                <span class="skill-tag">Prompt Engineering</span>
+                <span class="skill-tag">AI Image Processing</span>
+                <span class="skill-tag">TensorFlow</span>
+              </div>
+            </div>
+            <div class="skill-group">
+              <h4><span class="skill-dot"></span> Graphic Design</h4>
+              <div class="skill-tags">
+                <span class="skill-tag">Photoshop</span>
+                <span class="skill-tag">Illustrator</span>
+                <span class="skill-tag">Canva</span>
+                <span class="skill-tag">Figma</span>
+                <span class="skill-tag">Brand Identity</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="cv-section">
+          <h2 class="cv-section-title"><i class="fas fa-chart-line"></i> Digital Marketing</h2>
+          <div class="skill-tags">
+            <span class="skill-tag">Facebook Ads</span>
+            <span class="skill-tag">Instagram Marketing</span>
+            <span class="skill-tag">Social Media Strategy</span>
+            <span class="skill-tag">SEO Basics</span>
+            <span class="skill-tag">Content Creation</span>
+            <span class="skill-tag">Campaign Management</span>
+            <span class="skill-tag">Audience Targeting</span>
+            <span class="skill-tag">Analytics & Reporting</span>
+          </div>
+        </div>
+
+        <div class="cv-section">
+          <h2 class="cv-section-title"><i class="fas fa-briefcase"></i> Professional Services</h2>
+          <div class="services-list">
+            <div class="service-item"><i class="fas fa-check-circle"></i> AI Virtual Try-On Website Development</div>
+            <div class="service-item"><i class="fas fa-check-circle"></i> Custom Website Development</div>
+            <div class="service-item"><i class="fas fa-check-circle"></i> E-Commerce Website Development</div>
+            <div class="service-item"><i class="fas fa-check-circle"></i> Portfolio Website Development</div>
+            <div class="service-item"><i class="fas fa-check-circle"></i> Landing Page Design</div>
+            <div class="service-item"><i class="fas fa-check-circle"></i> Admin Dashboard Development</div>
+            <div class="service-item"><i class="fas fa-check-circle"></i> Graphic Design & Branding</div>
+            <div class="service-item"><i class="fas fa-check-circle"></i> Logo & Brand Identity Design</div>
+            <div class="service-item"><i class="fas fa-check-circle"></i> Facebook Advertisement Management</div>
+            <div class="service-item"><i class="fas fa-check-circle"></i> Social Media Consultation</div>
+          </div>
+        </div>
+
+        <div class="cv-section">
+          <h2 class="cv-section-title"><i class="fas fa-rocket"></i> Featured Projects</h2>
+          <div class="projects-grid">
+            <div class="project-item">
+              <h4><i class="fas fa-user-astronaut" style="color:var(--primary);margin-right:6px;"></i> AI Virtual Try-On Platform</h4>
+              <p>AI-powered virtual try-on solution for clothing brands. Customers upload photos and preview clothing in real-time.</p>
+              <div class="project-links">
+                <a href="index.html#portfolio" class="project-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                <a href="https://github.com/ahsan762" target="_blank" class="project-link"><i class="fab fa-github"></i> Source</a>
+              </div>
+            </div>
+            <div class="project-item">
+              <h4><i class="fas fa-shopping-bag" style="color:var(--secondary);margin-right:6px;"></i> Fashion eCommerce Website</h4>
+              <p>Responsive online clothing store with product management, shopping cart, secure checkout, and AI integration.</p>
+              <div class="project-links">
+                <a href="index.html#portfolio" class="project-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                <a href="https://github.com/ahsan762" target="_blank" class="project-link"><i class="fab fa-github"></i> Source</a>
+              </div>
+            </div>
+            <div class="project-item">
+              <h4><i class="fas fa-globe" style="color:var(--accent);margin-right:6px;"></i> Business Portfolio Website</h4>
+              <p>Modern responsive portfolio website with animations, project showcase, and contact functionality.</p>
+              <div class="project-links">
+                <a href="index.html" class="project-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+              </div>
+            </div>
+            <div class="project-item">
+              <h4><i class="fas fa-tachometer-alt" style="color:#ffa502;margin-right:6px;"></i> Admin Dashboard</h4>
+              <p>Powerful admin panel for managing products, users, orders, analytics, and website content.</p>
+              <div class="project-links">
+                <a href="indexadmin.html" class="project-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="cv-section">
+          <div class="two-col">
+            <div>
+              <h2 class="cv-section-title"><i class="fas fa-graduation-cap"></i> Education</h2>
+              <div class="education-item">
+                <div class="edu-icon"><i class="fas fa-graduation-cap"></i></div>
+                <div class="edu-info">
+                  <h4>Bachelor of Science in Software Engineering</h4>
+                  <p>MNS University of Engineering & Technology (MNS UET), Multan</p>
+                </div>
+              </div>
+            </div>
+            <div>
+              <h2 class="cv-section-title"><i class="fas fa-tools"></i> Tools & Technologies</h2>
+              <div class="tools-grid">
+                <span class="tool-tag"><i class="fas fa-code"></i> VS Code</span>
+                <span class="tool-tag"><i class="fab fa-git-alt"></i> Git & GitHub</span>
+                <span class="tool-tag"><i class="fab fa-figma"></i> Figma</span>
+                <span class="tool-tag"><i class="fas fa-paint-brush"></i> Photoshop</span>
+                <span class="tool-tag"><i class="fas fa-bezier-curve"></i> Illustrator</span>
+                <span class="tool-tag"><i class="fas fa-palette"></i> Canva</span>
+                <span class="tool-tag"><i class="fas fa-paper-plane"></i> Postman</span>
+                <span class="tool-tag"><i class="fas fa-server"></i> XAMPP</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="cv-section">
+          <h2 class="cv-section-title"><i class="fas fa-language"></i> Languages</h2>
+          <div class="two-col" style="grid-template-columns: 1fr 1fr; max-width: 400px;">
+            <div class="lang-item">
+              <div class="lang-dot"></div>
+              <span>English (Professional)</span>
+            </div>
+            <div class="lang-item">
+              <div class="lang-dot"></div>
+              <span>Urdu (Native)</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="cv-footer">
+        <p>&copy; 2026 Muhammad Ahsan &mdash; <a href="mailto:mahsan395794752@gmail.com">mahsan395794752@gmail.com</a> &mdash; +92 321 3548485 &mdash; <a href="index.html">Portfolio</a> &mdash; <a href="indexadmin.html">Admin Panel</a></p>
+      </div>
+
+    </div>
+  </div>
+
+
+</body>
+</html>

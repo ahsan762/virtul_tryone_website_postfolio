@@ -1,0 +1,322 @@
+/* ═══════════════════════════════════════════
+   ABOUT SECTION — Two-Column, Glass Cards
+   ═══════════════════════════════════════════ */
+
+.about {
+  position: relative;
+  overflow: hidden;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: var(--gap-xl);
+  align-items: center;
+}
+
+/* ── Left: Image Side ── */
+.about-image-col {
+  position: relative;
+  z-index: 2;
+}
+
+.about-image-wrapper {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 3px solid var(--border-color);
+  transition: all var(--transition-slow);
+}
+
+.about-image-wrapper:hover {
+  border-color: var(--primary);
+  box-shadow: var(--shadow-glow);
+}
+
+.about-image-wrapper::before {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: var(--radius-lg);
+  background: var(--gradient-primary);
+  z-index: -1;
+  opacity: 0;
+  transition: opacity var(--transition-base);
+}
+
+.about-image-wrapper:hover::before {
+  opacity: 0.4;
+}
+
+.about-image {
+  width: 100%;
+  height: 480px;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+  transition: transform var(--transition-slow);
+  display: block;
+}
+
+.about-image-wrapper:hover .about-image {
+  transform: scale(1.03);
+}
+
+/* ── Decorative Border ── */
+.about-decorations {
+  position: absolute;
+  top: -15px;
+  left: -15px;
+  width: 120px;
+  height: 120px;
+  z-index: -1;
+  opacity: 0.5;
+}
+
+.about-dot-grid {
+  width: 100%;
+  height: 100%;
+  border-top: 3px solid var(--primary);
+  border-left: 3px solid var(--primary);
+  border-radius: var(--radius-md) 0 0 0;
+}
+
+/* ── Experience Badge Overlay ── */
+.about-experience-badge {
+  position: absolute;
+  bottom: 30px;
+  right: -20px;
+  padding: 18px 28px;
+  background: var(--bg-glass);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  text-align: center;
+  z-index: 3;
+  animation: float 4s ease-in-out infinite;
+}
+
+.about-experience-badge .exp-number {
+  font-family: var(--font-heading);
+  font-size: var(--fs-3xl);
+  font-weight: 900;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+  display: block;
+}
+
+.about-experience-badge .exp-text {
+  font-size: var(--fs-sm);
+  color: var(--text-secondary);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+/* ═══════════════════════════════════════════
+   RIGHT: Content Side
+   ═══════════════════════════════════════════ */
+
+.about-content {
+  z-index: 2;
+}
+
+.about-name {
+  font-family: var(--font-heading);
+  font-size: var(--fs-2xl);
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: var(--gap-sm);
+}
+
+.about-role {
+  font-size: var(--fs-md);
+  font-weight: 600;
+  margin-bottom: var(--gap-md);
+}
+
+.about-bio {
+  font-size: var(--fs-md);
+  color: var(--text-secondary);
+  line-height: 1.8;
+  margin-bottom: var(--gap-lg);
+}
+
+.about-bio strong {
+  color: var(--text-primary);
+}
+
+/* ── Info Grid ── */
+.about-info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--gap-md);
+  margin-bottom: var(--gap-lg);
+}
+
+.about-info-item {
+  padding: 16px 20px;
+  background: var(--bg-glass);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-base);
+}
+
+.about-info-item:hover {
+  border-color: var(--border-hover);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-glow);
+}
+
+.about-info-item .info-label {
+  display: block;
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+
+.about-info-item .info-value {
+  font-size: var(--fs-sm);
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.about-info-item .info-value.status-green {
+  color: var(--secondary);
+}
+
+/* ── Stats ── */
+.about-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--gap-md);
+  margin-bottom: var(--gap-lg);
+}
+
+.about-stat {
+  padding: 24px 20px;
+  background: var(--bg-glass);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  text-align: center;
+  transition: all var(--transition-base);
+}
+
+.about-stat:hover {
+  border-color: var(--border-hover);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-glow);
+}
+
+.about-stat-number {
+  font-family: var(--font-heading);
+  font-size: var(--fs-2xl);
+  font-weight: 800;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1.2;
+}
+
+.about-stat-label {
+  display: block;
+  font-size: var(--fs-sm);
+  color: var(--text-secondary);
+  font-weight: 500;
+  margin-top: 4px;
+}
+
+/* ── Buttons ── */
+.about-buttons {
+  display: flex;
+  gap: var(--gap-md);
+  flex-wrap: wrap;
+}
+
+.about-buttons .btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════ */
+
+@media (max-width: 992px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: var(--gap-lg);
+  }
+
+  .about-image-col {
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  .about-image {
+    height: 380px;
+  }
+
+  .about-experience-badge {
+    right: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .about-stats {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--gap-sm);
+  }
+
+  .about-stat {
+    padding: 18px 14px;
+  }
+
+  .about-image {
+    height: 320px;
+  }
+
+  .about-info-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 576px) {
+  .about-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .about-image {
+    height: 280px;
+  }
+
+  .about-decorations {
+    display: none;
+  }
+
+  .about-experience-badge {
+    bottom: 15px;
+    right: 15px;
+    padding: 14px 20px;
+  }
+
+  .about-buttons {
+    flex-direction: column;
+  }
+
+  .about-buttons .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}

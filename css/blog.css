@@ -1,0 +1,130 @@
+/* ═══════════════════════════════════════════
+   BLOG SECTION — Cards Grid
+   ═══════════════════════════════════════════ */
+
+.blog {
+  position: relative;
+  overflow: hidden;
+  background: var(--bg-secondary);
+}
+
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--gap-lg);
+}
+
+/* ── Blog Card ── */
+.blog-card {
+  padding: 0;
+  overflow: hidden;
+  transition: all var(--transition-base);
+}
+
+.blog-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-glow);
+}
+
+.blog-image {
+  position: relative;
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+}
+
+.blog-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-slow);
+}
+
+.blog-card:hover .blog-image img {
+  transform: scale(1.08);
+}
+
+.blog-category {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  padding: 5px 14px;
+  background: var(--primary);
+  color: #fff;
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  border-radius: var(--radius-xl);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.blog-content {
+  padding: 24px;
+}
+
+.blog-meta {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+
+.blog-meta span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+}
+
+.blog-meta i {
+  color: var(--primary);
+  font-size: 12px;
+}
+
+.blog-title {
+  font-family: var(--font-heading);
+  font-size: var(--fs-lg);
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.4;
+  margin-bottom: 10px;
+  transition: color var(--transition-base);
+}
+
+.blog-card:hover .blog-title {
+  color: var(--primary);
+}
+
+.blog-excerpt {
+  font-size: var(--fs-sm);
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: 16px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.blog-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--primary);
+  transition: all var(--transition-base);
+}
+
+.blog-link i {
+  transition: transform var(--transition-base);
+}
+
+.blog-link:hover {
+  color: var(--primary-dark);
+}
+
+.blog-link:hover i {
+  transform: translateX(5px);
+}

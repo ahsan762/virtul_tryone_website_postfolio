@@ -1,0 +1,107 @@
+/* ═══════════════════════════════════════════
+   SOCIAL SECTION — Follow Me Everywhere
+   ═══════════════════════════════════════════ */
+
+.social-section {
+  position: relative;
+  overflow: hidden;
+  background: var(--bg-secondary);
+}
+
+.social-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: var(--gap-md);
+}
+
+.social-link-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 32px 20px;
+  background: var(--bg-glass);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  transition: all var(--transition-base);
+  text-decoration: none;
+}
+
+.social-link-card i {
+  font-size: 32px;
+  transition: all var(--transition-base);
+}
+
+.social-link-card span {
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--text-secondary);
+  transition: color var(--transition-base);
+}
+
+.social-link-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-glow);
+}
+
+.social-link-card:hover span {
+  color: var(--text-primary);
+}
+
+/* ── Platform Colors ── */
+.social-link-card.facebook:hover {
+  border-color: #1877f2;
+  background: rgba(24, 119, 242, 0.1);
+}
+.social-link-card.facebook:hover i { color: #1877f2; }
+
+.social-link-card.instagram:hover {
+  border-color: #e4405f;
+  background: rgba(228, 64, 95, 0.1);
+}
+.social-link-card.instagram:hover i { color: #e4405f; }
+
+.social-link-card.linkedin:hover {
+  border-color: #0a66c2;
+  background: rgba(10, 102, 194, 0.1);
+}
+.social-link-card.linkedin:hover i { color: #0a66c2; }
+
+.social-link-card.github:hover {
+  border-color: #f0f6fc;
+  background: rgba(240, 246, 252, 0.1);
+}
+.social-link-card.github:hover i { color: #f0f6fc; }
+
+.social-link-card.fiverr:hover {
+  border-color: #1dbf73;
+  background: rgba(29, 191, 115, 0.1);
+}
+.social-link-card.fiverr:hover i { color: #1dbf73; }
+
+.social-link-card.upwork:hover {
+  border-color: #14a800;
+  background: rgba(20, 168, 0, 0.1);
+}
+.social-link-card.upwork:hover i { color: #14a800; }
+
+.social-link-card.youtube:hover {
+  border-color: #ff0000;
+  background: rgba(255, 0, 0, 0.1);
+}
+.social-link-card.youtube:hover i { color: #ff0000; }
+
+.social-link-card.behance:hover {
+  border-color: #1769ff;
+  background: rgba(23, 105, 255, 0.1);
+}
+.social-link-card.behance:hover i { color: #1769ff; }
+
+.social-link-card.dribbble:hover {
+  border-color: #ea4c89;
+  background: rgba(234, 76, 137, 0.1);
+}
+.social-link-card.dribbble:hover i { color: #ea4c89; }

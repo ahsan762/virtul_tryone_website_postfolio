@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel - Muhammad Ahsan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+
+<div id="loginPage" class="login-page">
+  <div class="login-box">
+    <div class="logo"><i class="fas fa-shield-halved" style="color:#6c63ff"></i></div>
+    <h1>Admin Login</h1>
+    <p>Enter your credentials to access the admin panel</p>
+    <div id="loginError" class="login-error"></div>
+    <form id="loginForm">
+      <div class="form-group">
+        <label>Username</label>
+        <input type="text" id="username" placeholder="Username" required>
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" id="password" placeholder="Password" required>
+      </div>
+      <button type="submit" class="btn btn-primary"><i class="fas fa-lock"></i> Login</button>
+    </form>
+    <p style="margin-top:20px;font-size:0.78rem;color:var(--text-muted)">
+      <a href="index.html" style="color:var(--primary)"><i class="fas fa-arrow-left"></i> Back to Website</a>
+    </p>
+  </div>
+</div>
+
+<div id="dashboard" class="admin-page" style="display:none">
+
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <i class="fas fa-crown" style="color:var(--secondary);font-size:1.5rem"></i>
+      <h2><span>A</span>dmin</h2>
+      <a href="index.html" class="back-link" title="View Website"><i class="fas fa-external-link-alt"></i></a>
+    </div>
+    <nav class="sidebar-nav">
+      <button class="nav-item active" data-page="dashboard-page"><i class="fas fa-chart-pie"></i> Dashboard</button>
+      <button class="nav-item" data-page="projects-page"><i class="fas fa-folder"></i> Projects</button>
+      <button class="nav-item" data-page="settings-page"><i class="fas fa-cog"></i> Site Settings</button>
+      <button class="nav-item" data-page="contacts-page"><i class="fas fa-address-book"></i> Contacts</button>
+    </nav>
+    <div class="sidebar-footer">
+      <button class="nav-item" id="logoutBtn"><i class="fas fa-right-from-bracket"></i> Logout</button>
+    </div>
+  </aside>
+
+  <main class="main-content">
+
+    <div id="successMsg" class="success-msg"></div>
+
+    <!-- Dashboard -->
+    <section id="dashboard-page" class="page-section active">
+      <div class="admin-header">
+        <h1>Dashboard</h1>
+        <a href="index.html" class="btn btn-secondary btn-sm"><i class="fas fa-eye"></i> View Site</a>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon blue"><i class="fas fa-folder"></i></div>
+          <div class="stat-number" id="statProjects">0</div>
+          <div class="stat-label">Projects</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon green"><i class="fas fa-briefcase"></i></div>
+          <div class="stat-number" id="statServices">10</div>
+          <div class="stat-label">Services</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon orange"><i class="fas fa-envelope"></i></div>
+          <div class="stat-number" id="statContacts">0</div>
+          <div class="stat-label">Contacts</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon red"><i class="fas fa-globe"></i></div>
+          <div class="stat-number" id="statViews">1</div>
+          <div class="stat-label">Live Sites</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h3><i class="fas fa-clock" style="color:var(--primary);margin-right:8px"></i> Recent Projects</h3>
+          <button class="btn btn-primary btn-sm" onclick="document.querySelector('[data-page=projects-page]').click()">
+            <i class="fas fa-plus"></i> Manage
+          </button>
+        </div>
+        <div class="card-body">
+          <table class="table">
+            <thead><tr><th>Project</th><th>Category</th><th>Link</th></tr></thead>
+            <tbody id="recentProjects"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects-page" class="page-section">
+      <div class="admin-header">
+        <h1>Manage <span>Projects</span></h1>
+        <button class="btn btn-primary btn-sm" id="addProjectBtn"><i class="fas fa-plus"></i> Add Project</button>
+      </div>
+
+      <div class="card">
+        <div class="card-body">
+          <table class="table">
+            <thead><tr><th>Name</th><th>Category</th><th>Link</th><th>Actions</th></tr></thead>
+            <tbody id="projectsList"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- Site Settings -->
+    <section id="settings-page" class="page-section">
+      <div class="admin-header">
+        <h1>Site <span>Settings</span></h1>
+      </div>
+
+      <div class="card">
+        <div class="card-header"><h3><i class="fas fa-address-card" style="color:var(--primary);margin-right:8px"></i> Contact Information</h3></div>
+        <div class="card-body">
+          <form id="siteInfoForm">
+            <div class="form-grid">
+              <div class="form-group">
+                <label><i class="fas fa-envelope" style="color:var(--primary);width:16px"></i> Email</label>
+                <input type="email" id="siteEmail" placeholder="your@email.com">
+              </div>
+              <div class="form-group">
+                <label><i class="fas fa-phone" style="color:var(--primary);width:16px"></i> Phone</label>
+                <input type="text" id="sitePhone" placeholder="+92 300 1234567">
+              </div>
+              <div class="form-group">
+                <label><i class="fab fa-whatsapp" style="color:var(--primary);width:16px"></i> WhatsApp Number</label>
+                <input type="text" id="siteWhatsapp" placeholder="923001234567">
+              </div>
+              <div class="form-group">
+                <label><i class="fas fa-map-marker-alt" style="color:var(--primary);width:16px"></i> Location</label>
+                <input type="text" id="siteLocation" placeholder="Pakistan">
+              </div>
+            </div>
+
+            <div class="card-header" style="padding-left:0;padding-right:0;margin-top:24px"><h3><i class="fas fa-link" style="color:var(--primary);margin-right:8px"></i> Social Links</h3></div>
+
+            <div class="form-grid" style="margin-top:20px">
+              <div class="form-group">
+                <label><i class="fab fa-facebook" style="color:#1877f2;width:16px"></i> Facebook URL</label>
+                <input type="url" id="siteFacebook" placeholder="https://facebook.com/...">
+              </div>
+              <div class="form-group">
+                <label><i class="fab fa-instagram" style="color:#e4405f;width:16px"></i> Instagram URL</label>
+                <input type="url" id="siteInstagram" placeholder="https://instagram.com/...">
+              </div>
+              <div class="form-group">
+                <label><i class="fab fa-linkedin" style="color:#0a66c2;width:16px"></i> LinkedIn URL</label>
+                <input type="url" id="siteLinkedin" placeholder="https://linkedin.com/in/...">
+              </div>
+              <div class="form-group">
+                <label><i class="fab fa-github" style="color:#333;width:16px"></i> GitHub URL</label>
+                <input type="url" id="siteGithub" placeholder="https://github.com/...">
+              </div>
+              <div class="form-group">
+                <label><i class="fab fa-youtube" style="color:#ff0000;width:16px"></i> YouTube URL</label>
+                <input type="url" id="siteYoutube" placeholder="https://youtube.com/@...">
+              </div>
+              <div class="form-group">
+                <label><i class="fab fa-fiverr" style="color:#1dbf73;width:16px"></i> Fiverr Profile URL</label>
+                <input type="url" id="siteFiverr" placeholder="https://fiverr.com/...">
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="margin-top:20px;width:auto">
+              <i class="fas fa-save"></i> Save Settings
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contacts -->
+    <section id="contacts-page" class="page-section">
+      <div class="admin-header">
+        <h1>Contact <span>Information</span></h1>
+        <a href="index.html#contact" class="btn btn-secondary btn-sm"><i class="fas fa-envelope"></i> View Contact Form</a>
+      </div>
+
+      <div class="card">
+        <div class="card-header"><h3><i class="fas fa-address-book" style="color:var(--primary);margin-right:8px"></i> Saved Contact Details</h3></div>
+        <div class="card-body">
+          <p style="font-size:0.85rem;color:var(--text-muted);margin-bottom:16px">
+            Update your contact details in <strong>Site Settings</strong>. The information below reflects your saved settings.
+          </p>
+          <table class="table">
+            <thead><tr><th>Type</th><th>Value</th></tr></thead>
+            <tbody id="contactsList"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- Project Modal -->
+<div id="projectModal" class="modal-overlay">
+  <div class="modal">
+    <h2 id="modalTitle">Add Project</h2>
+    <form id="projectForm">
+      <input type="hidden" id="projectIndex">
+      <div class="form-group">
+        <label>Project Name *</label>
+        <input type="text" id="projectName" placeholder="e.g. AI Virtual Try-On Platform" required>
+      </div>
+      <div class="form-group">
+        <label>Description</label>
+        <textarea id="projectDesc" rows="3" placeholder="Brief description of the project"></textarea>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Category</label>
+          <select id="projectCategory">
+            <option value="Website">Website</option>
+            <option value="AI">AI Project</option>
+            <option value="Design">Graphic Design</option>
+            <option value="Marketing">Marketing</option>
+            <option value="E-Commerce">E-Commerce</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Project Link (URL)</label>
+          <input type="url" id="projectLink" placeholder="https://... or relative path">
+        </div>
+      </div>
+      <div class="modal-actions">
+        <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Save Project</button>
+        <button type="button" class="btn btn-secondary" id="cancelProject"><i class="fas fa-times"></i> Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="js/admin.js"></script>
+</body>
+</html>
